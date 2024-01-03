@@ -1,5 +1,6 @@
 package rahulshettyacademy;
 
+import java.io.IOException;
 import java.time.Duration;
 import java.util.List;
 
@@ -13,30 +14,24 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import org.testng.annotations.Test;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import rahulshettyacademy.TestComponents.BaseTest;
 import rahulshettyacademy.pageobjects.CartPage;
 import rahulshettyacademy.pageobjects.CheckoutPage;
 import rahulshettyacademy.pageobjects.ConfirmationOderPage;
 import rahulshettyacademy.pageobjects.LandingPage;
 import rahulshettyacademy.pageobjects.ProductCatelogue;
 
-public class SubmitorderTest {
+public class SubmitorderTest extends BaseTest{
 
-	public static void main(String[] args) throws InterruptedException {
+	@Test
+	public void submitOrder() throws IOException, InterruptedException {
 		
 		String productname="ZARA COAT 3";
-		WebDriverManager.chromedriver().setup();
-		WebDriver driver = new ChromeDriver();
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-		
-		driver.manage().window().maximize();
-		
-		WebDriverWait wait=new WebDriverWait(driver,Duration.ofSeconds(5));
 		
 		//From landing page
-		LandingPage landingpage= new LandingPage(driver);
-		landingpage.goTo();
 		ProductCatelogue productcatalogue=landingpage.loginApplication("anshika@gmail.com", "Iamking@000");
 		
 		//on Product catalogue page
@@ -55,13 +50,14 @@ public class SubmitorderTest {
 		ConfirmationOderPage confirmationOrderPage= checkoutpage.submitOrder();
 		
 		//place order page
-		
-		
 		String confirmmessage=confirmationOrderPage.getConfimationMessage();
 		Assert.assertTrue(confirmmessage.equalsIgnoreCase("THANKYOU FOR THE ORDER"));
-		driver.close();
 		
-
+	}
+	
+	@Test
+	public void OrderHistoryTest() {
+		
 	}
 
 }
