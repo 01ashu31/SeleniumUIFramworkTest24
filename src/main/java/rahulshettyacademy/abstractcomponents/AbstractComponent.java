@@ -24,6 +24,9 @@ public class AbstractComponent {
 			
 	@FindBy(css="[routerlink*='cart']")
 	WebElement cardHeader;
+	
+	@FindBy(css="[routerlink*='myorders']")
+	WebElement orderHeader;
 
 	public void waitForElementToAppear(By findBy) {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
@@ -45,6 +48,13 @@ public class AbstractComponent {
 		cardHeader.click();
 		CartPage cartPage= new CartPage(driver);
 		return cartPage;
+		
+	}
+	
+	public OrderPage goToOrderPage() {
+		orderHeader.click();
+		OrderPage orderPage= new OrderPage(driver);
+		return orderPage;
 		
 	}
 

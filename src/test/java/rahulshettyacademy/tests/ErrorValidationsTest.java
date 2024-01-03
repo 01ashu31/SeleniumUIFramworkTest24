@@ -1,4 +1,4 @@
-package rahulshettyacademy;
+package rahulshettyacademy.tests;
 
 import java.util.List;
 
@@ -14,7 +14,7 @@ import rahulshettyacademy.pageobjects.ProductCatelogue;
 
 public class ErrorValidationsTest extends BaseTest {
 
-	@Test
+	@Test (groups= {"ErrorHandling"})
 	public void LoginErrorValidation() {
 		String productName = "ZARA COAT 3";
 		landingpage.loginApplication("anshika@gmail.com", "Iamkin@000");
