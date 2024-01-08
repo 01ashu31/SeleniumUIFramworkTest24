@@ -8,17 +8,18 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import rahulshettyacademy.TestComponents.BaseTest;
+import rahulshettyacademy.TestComponents.Retry;
 import rahulshettyacademy.abstractcomponents.AbstractComponent;
 import rahulshettyacademy.pageobjects.CartPage;
 import rahulshettyacademy.pageobjects.ProductCatelogue;
 
 public class ErrorValidationsTest extends BaseTest {
 
-	@Test (groups= {"ErrorHandling"})
+	@Test (groups= {"ErrorHandling"}, retryAnalyzer = Retry.class)
 	public void LoginErrorValidation() {
 		String productName = "ZARA COAT 3";
 		landingpage.loginApplication("anshika@gmail.com", "Iamkin@000");
-		Assert.assertEquals("Incorrect email or password.", landingpage.getErrorMessage());
+		Assert.assertEquals("Incorrect email password.", landingpage.getErrorMessage());
 	}
 
 	@Test
